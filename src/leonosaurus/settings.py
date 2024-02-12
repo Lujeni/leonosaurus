@@ -32,7 +32,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "social_django",
+    "deploydocus",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.gitlab",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "leonosaurus.urls"
@@ -124,8 +129,25 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
-SOCIAL_AUTH_GITLAB_SCOPE = ["api"]
-SOCIAL_AUTH_GITLAB_KEY = getenv("SOCIAL_AUTH_GITLAB_KEY")
-SOCIAL_AUTH_GITLAB_SECRET = getenv("SOCIAL_AUTH_GITLAB_SECRET")
-SOCIAL_AUTH_GITLAB_API_URL = getenv("SOCIAL_AUTH_GITLAB_API_URL", "https://gitlab.com")
+SOCIALACCOUNT_PROVIDERS = {
+    "gitlab": {
+        "SCOPE": ["read_user"],
+        "APPS": [
+            {
+                "client_id": getenv("SOCIAL_AUTH_GITLAB_CLIENT_ID"),
+                "secret": getenv("SOCIAL_AUTH_GITLAB_SECRET"),
+                "settings": {
+                    "gitlab_url": getenv("SOCIAL_AUTH_GITLAB_URL", "https://gitlab.com")
+                },
+            }
+        ],
+    },
+}
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+LOGIN_REDIRECT_URL = "/about"
