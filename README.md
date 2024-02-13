@@ -14,10 +14,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Leonosaurus</h3>
 
   <p align="center">
-    project_description
+    .
     <br />
     <a href="https://github.com/Lujeni/leonosaurus"><strong>Explore the docs »</strong></a>
     <br />
@@ -69,8 +69,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Django][Django]][Django]
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -81,12 +79,7 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+TBD
 
 ### Installation
 
@@ -95,15 +88,14 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/Lujeni/leonosaurus.git
    ```
-3. Install NPM packages
+3. Install Python packages
    ```sh
-   npm install
+   pip install .
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Create your GitLab Application
+   ```sh
+   .
    ```
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -139,13 +131,8 @@ See the [open issues](https://github.com/Lujeni/leonosaurus/issues) for a full l
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+TBD process
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -160,23 +147,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/Lujeni/leonosaurus](https://github.com/Lujeni/leonosaurus)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
