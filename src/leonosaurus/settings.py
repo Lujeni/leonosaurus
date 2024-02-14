@@ -134,6 +134,7 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+GITLAB_URL = getenv("SOCIAL_AUTH_GITLAB_URL", "https://gitlab.com")
 SOCIALACCOUNT_PROVIDERS = {
     "gitlab": {
         "SCOPE": ["read_user"],
@@ -141,9 +142,7 @@ SOCIALACCOUNT_PROVIDERS = {
             {
                 "client_id": getenv("SOCIAL_AUTH_GITLAB_CLIENT_ID"),
                 "secret": getenv("SOCIAL_AUTH_GITLAB_SECRET"),
-                "settings": {
-                    "gitlab_url": getenv("SOCIAL_AUTH_GITLAB_URL", "https://gitlab.com")
-                },
+                "settings": {"gitlab_url": GITLAB_URL},
             }
         ],
     },
@@ -151,3 +150,6 @@ SOCIALACCOUNT_PROVIDERS = {
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGIN_REDIRECT_URL = "/about"
+
+# gitlab
+GITLAB_PRIVATE_TOKEN = getenv("GITLAB_PRIVATE_TOKEN")
