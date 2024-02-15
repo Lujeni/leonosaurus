@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "deploydocus",
+    "django_extensions",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
