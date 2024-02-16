@@ -14,9 +14,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-  "black",
-  "django-stubs",
-  "ipdb",
-  "ruff",
-  "pre-commit",
+  "black==24.1.1",
+  "django-stubs==4.2.7",
+  "pre-commit==3.6.1",
+  "pytest==8.0.0",
+  "pytest-random-order",
+  "ruff==0.2.1",
+  "pytest-cov==4.1.0",
+  "pytest-django==4.8.0",
+  "pytest-random-order==1.1.1"
 ]

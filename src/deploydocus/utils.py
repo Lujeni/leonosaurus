@@ -7,7 +7,7 @@ def get_gitlab_connection() -> gitlab.client.Gitlab:
     gl = gitlab.Gitlab(
         url=settings.GITLAB_URL,
         private_token=settings.GITLAB_PRIVATE_TOKEN,
-        user_agen="leonosaurus",
+        user_agent="leonosaurus",
     )
     gl.auth()
     if settings.DEBUG:
