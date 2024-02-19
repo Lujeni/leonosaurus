@@ -93,3 +93,18 @@ class ReportResult(TimeStampedModel):
         ordering = ["status"]
         verbose_name = _("Report result")
         verbose_name_plural = _("Report results")
+
+
+class GitlabProject(TimeStampedModel):
+    path_with_namespace = models.CharField(max_length=3000)
+
+    def __str__(self):
+        return smart_str(self.path_with_namespace)
+
+    def __unicode__(self):
+        return smart_str(self.path_with_namespace)
+
+    class Meta:
+        ordering = ["path_with_namespace"]
+        verbose_name = _("Gitlab project")
+        verbose_name_plural = _("Gitlab projects")

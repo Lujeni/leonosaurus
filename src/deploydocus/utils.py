@@ -13,3 +13,7 @@ def get_gitlab_connection() -> gitlab.client.Gitlab:
     if settings.DEBUG:
         gl.enable_debug()
     return gl
+
+
+def get_projects(gl: gitlab.client.Gitlab) -> list:
+    return gl.projects.list(all=True)
