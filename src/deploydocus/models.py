@@ -42,8 +42,8 @@ class Policy(TimeStampedModel):
 
 class Scope(TimeStampedModel):
     name = models.CharField(max_length=100)
-    include = models.CharField(max_length=300, default="*")
-    exlude = models.CharField(max_length=300, blank=True, null=True)
+    include = models.CharField(max_length=300, default=".*")
+    exclude = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return smart_str(self.name)

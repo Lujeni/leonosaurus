@@ -10,10 +10,8 @@ def get_gitlab_connection() -> gitlab.client.Gitlab:
         user_agent="leonosaurus",
     )
     gl.auth()
-    if settings.DEBUG:
-        gl.enable_debug()
     return gl
 
 
 def get_projects(gl: gitlab.client.Gitlab) -> list:
-    return gl.projects.list(all=True)
+    return gl.projects.list()

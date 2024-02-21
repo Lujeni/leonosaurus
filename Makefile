@@ -1,5 +1,5 @@
 qa:
-	pre-commit run -a
+	pre-commit run -v --all-files --show-diff-on-failure
 
 migrations:
 	python src/manage.py makemigrations
