@@ -14,4 +14,4 @@ def get_gitlab_connection() -> gitlab.client.Gitlab:
 
 
 def get_projects(gl: gitlab.client.Gitlab) -> list:
-    return gl.projects.list()
+    return gl.projects.list(per_page=100)

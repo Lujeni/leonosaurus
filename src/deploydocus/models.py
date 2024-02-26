@@ -96,7 +96,13 @@ class ReportResult(TimeStampedModel):
 
 
 class GitlabProject(TimeStampedModel):
+    class MergeMethodChoices(models.TextChoices):
+        FF = "ff"
+        MERGE = "merge"
+        REBASE_MERGE = "rebase_merge"
+
     path_with_namespace = models.CharField(max_length=3000)
+    merge_method = models.CharField(max_length=30, choices=MergeMethodChoices.choices)
 
     def __str__(self):
         return smart_str(self.path_with_namespace)

@@ -10,3 +10,6 @@ migrate:
 run: migrate
 	python src/manage.py loaddata initial_test_user && \
 	python src/manage.py runserver
+
+sync-gitlab:
+	python src/manage.py sync_gitlab
