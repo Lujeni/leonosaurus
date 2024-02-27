@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("deploydocus", "0005_alter_gitlabproject_merge_method"),
     ]

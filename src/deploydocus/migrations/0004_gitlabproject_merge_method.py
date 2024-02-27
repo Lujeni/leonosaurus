@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("deploydocus", "0003_rename_exlude_scope_exclude_alter_scope_include"),
     ]

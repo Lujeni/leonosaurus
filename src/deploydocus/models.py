@@ -6,6 +6,22 @@ from django.utils.translation import gettext_lazy as _
 from deploydocus.enums import MergeMethodChoices, AttributChoices
 
 
+class GitlabProject(TimeStampedModel):
+    path_with_namespace = models.CharField(max_length=3000)
+    merge_method = models.CharField(max_length=30, choices=MergeMethodChoices.choices)
+
+    def __str__(self):
+        return smart_str(self.path_with_namespace)
+
+    def __unicode__(self):
+        return smart_str(self.path_with_namespace)
+
+    class Meta:
+        ordering = ["path_with_namespace"]
+        verbose_name = _("Gitlab project")
+        verbose_name_plural = _("Gitlab projects")
+
+
 class GitlabRule(TimeStampedModel):
     name = models.CharField(max_length=300)
     attribut = models.CharField(max_length=30, choices=AttributChoices.choices)
@@ -65,6 +81,7 @@ class Scope(TimeStampedModel):
     name = models.CharField(max_length=100)
     include = models.CharField(max_length=300, default=".*")
     exclude = models.CharField(max_length=300, blank=True, null=True)
+    gitlab_projects = models.ManyToManyField(GitlabProject, blank=True)
 
     def __str__(self):
         return smart_str(self.name)
@@ -114,19 +131,3 @@ class ReportResult(TimeStampedModel):
         ordering = ["status"]
         verbose_name = _("Report result")
         verbose_name_plural = _("Report results")
-
-
-class GitlabProject(TimeStampedModel):
-    path_with_namespace = models.CharField(max_length=3000)
-    merge_method = models.CharField(max_length=30, choices=MergeMethodChoices.choices)
-
-    def __str__(self):
-        return smart_str(self.path_with_namespace)
-
-    def __unicode__(self):
-        return smart_str(self.path_with_namespace)
-
-    class Meta:
-        ordering = ["path_with_namespace"]
-        verbose_name = _("Gitlab project")
-        verbose_name_plural = _("Gitlab projects")

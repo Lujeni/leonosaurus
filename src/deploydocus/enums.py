@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class MergeMethodChoices(models.TextChoices):
     FF = "ff"
     MERGE = "merge"
@@ -8,5 +9,3 @@ class MergeMethodChoices(models.TextChoices):
 
 class AttributChoices(models.TextChoices):
     merge_method = "merge_method"
-
-
