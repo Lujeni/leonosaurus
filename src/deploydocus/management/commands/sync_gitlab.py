@@ -5,7 +5,7 @@ from deploydocus.models import Scope, GitlabProject
 from deploydocus.utils import get_projects, get_gitlab_connection
 
 
-def check_include(includes, path_with_namespace):
+def check_include(includes, path_with_namespace) -> bool:
     for include_rule in includes:
         if re.match(include_rule, path_with_namespace):
             return True

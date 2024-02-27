@@ -3,6 +3,26 @@ from django.utils.encoding import smart_str
 from django_extensions.db.models import TimeStampedModel
 from django.utils.translation import gettext_lazy as _
 
+from deploydocus.enums import MergeMethodChoices, AttributChoices
+
+
+class GitlabRule(TimeStampedModel):
+    name = models.CharField(max_length=300)
+    attribut = models.CharField(max_length=30, choices=AttributChoices.choices)
+    # TODO: we should propose another enum based on attribe choice
+    expected = models.CharField(max_length=300)
+
+    def __str__(self):
+        return smart_str(self.name)
+
+    def __unicode__(self):
+        return smart_str(self.name)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = _("GitLab Rule")
+        verbose_name_plural = _("GitLab Rules")
+
 
 class Rule(TimeStampedModel):
     ACTIONS = {
@@ -26,7 +46,8 @@ class Rule(TimeStampedModel):
 
 class Policy(TimeStampedModel):
     name = models.CharField(max_length=100)
-    rules = models.ManyToManyField(Rule)
+    rules = models.ManyToManyField(Rule, blank=True)
+    gitlab_rules = models.ManyToManyField(GitlabRule, blank=True)
 
     def __str__(self):
         return smart_str(self.name)
@@ -96,11 +117,6 @@ class ReportResult(TimeStampedModel):
 
 
 class GitlabProject(TimeStampedModel):
-    class MergeMethodChoices(models.TextChoices):
-        FF = "ff"
-        MERGE = "merge"
-        REBASE_MERGE = "rebase_merge"
-
     path_with_namespace = models.CharField(max_length=3000)
     merge_method = models.CharField(max_length=30, choices=MergeMethodChoices.choices)
 
