@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("deploydocus", "0009_alter_policy_gitlab_rules_alter_policy_rules"),
     ]

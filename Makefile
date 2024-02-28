@@ -13,3 +13,6 @@ run: migrate
 
 sync-gitlab:
 	python src/manage.py sync_gitlab
+
+scan-report:
+	python src/manage.py scan_report $1

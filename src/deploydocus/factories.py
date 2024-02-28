@@ -5,7 +5,7 @@ class GitlabProjectFactory(factory.django.DjangoModelFactory):
     merge_method = "merge"
 
     class Meta:
-        model = 'deploydocus.GitlabProject'
+        model = "deploydocus.GitlabProject"
 
 
 class GitlabRuleFactory(factory.django.DjangoModelFactory):
@@ -13,4 +13,4 @@ class GitlabRuleFactory(factory.django.DjangoModelFactory):
     expected = "merge"
 
     class Meta:
-        model = 'deploydocus.GitlabRule'
+        model = "deploydocus.GitlabRule"
