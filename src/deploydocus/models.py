@@ -34,6 +34,11 @@ class GitlabRule(TimeStampedModel):
     def __unicode__(self):
         return smart_str(self.name)
 
+    def is_compliant(self, project: GitlabProject) -> bool:
+        if not hasattr(project, self.attribut):
+            raise Exception(self.attribut)
+        return getattr(project, self.attribut) == self.expected
+
     class Meta:
         ordering = ["name"]
         verbose_name = _("GitLab Rule")
