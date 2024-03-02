@@ -25,3 +25,6 @@ dev = [
   "pytest==8.0.0",
   "ruff==0.2.1",
 ]
+doc = [
+  "mkdocs-material==9.5.12"
+]

@@ -1,0 +1,34 @@
+site_name: Leonosaurus
+site_description: Stop writing GitLab best practises.
+site_url: https://www.leonosaurus.org/
+
+theme:
+    name: 'material'
+    palette:
+      - scheme: 'default'
+        media: '(prefers-color-scheme: light)'
+        toggle:
+          icon: 'material/lightbulb'
+          name: "Switch to dark mode"
+      - scheme: 'slate'
+        media: '(prefers-color-scheme: dark)'
+        primary: 'blue'
+        toggle:
+          icon: 'material/lightbulb-outline'
+          name: 'Switch to light mode'
+
+repo_name: lujeni/leonosaurus
+repo_url: https://github.com/lujeni/leonosaurus/
+edit_uri: ""
+
+nav:
+    - Introduction: 'index.md'
+    - QuickStart: 'quickstart.md'
+    - Advanced:
+        - WIP: 'wip.md'
+    - Guides:
+        - WIP: 'wip.md'
+    - API Reference:
+        - WIP: 'wip.md'
+    - Community:
+        - Contributing: 'contributing.md'
