@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from deploydocus.views import AboutView
+from deploydocus.views import AboutView, IndexView
 
 urlpatterns = [
+    path("", IndexView.as_view()),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
     path("about/", AboutView.as_view()),

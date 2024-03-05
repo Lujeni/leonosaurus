@@ -150,7 +150,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-LOGIN_REDIRECT_URL = "/about"
+LOGIN_REDIRECT_URL = "/"
 
 # gitlab
 GITLAB_PRIVATE_TOKEN = getenv("GITLAB_PRIVATE_TOKEN")

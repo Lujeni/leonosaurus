@@ -1,7 +1,0 @@
-{% load socialaccount %}
-{% get_social_accounts user as accounts %}
-
-<a href="{% provider_login_url "gitlab" %}">GitLab</a>
-<div>
-  {{accounts}}
-</div>
