@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from deploydocus.views import AboutView, IndexView
+from deploydocus.views import AboutView, IndexView, ReportDetailView
 
 urlpatterns = [
-    path("", IndexView.as_view()),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
     path("about/", AboutView.as_view()),
+    path("", IndexView.as_view(), name="index"),
+    path("<int:pk>/", ReportDetailView.as_view(), name="report-detail"),
 ]

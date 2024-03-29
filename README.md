@@ -36,4 +36,3 @@ For more advanced topics, see the **Advanced** section,
 The Leonosaurus project relies on these excellent libraries:
 
 ## Installation
-

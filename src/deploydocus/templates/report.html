@@ -1,0 +1,24 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n %}
+{% block body %}
+    <div class="flex-grow-1 bg-body-secondary d-flex flex-column justify-content-center">
+        <div class="flex-grow-0 flex-shrink-0 container">
+            <div class="row justify-content-md-center">
+            <h1>{{ report.name }}</h1>
+            <ul>
+            {% for policy in report.policies.all %}
+                <li>{{ policy.name }}</li>
+                    <ul>
+                    {% for rule in policy.rules.all %}
+                        <li>{{ rule.name }}</li>
+                    {% endfor %}
+                    {% for rule in policy.gitlab_rules.all %}
+                        <li>{{ rule.name }}</li>
+                    {% endfor %}
+                    </ul>
+            {% endfor %}
+            </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
