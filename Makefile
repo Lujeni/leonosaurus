@@ -16,3 +16,9 @@ sync-gitlab:
 
 scan-report:
 	python src/manage.py scan_report $1
+
+compose:
+	docker compose up
+
+build:
+	DOCKER_BUILDKIT=1 docker build --platform linux/amd64 --ssh default -t lujeni/leonosaurus:latest .

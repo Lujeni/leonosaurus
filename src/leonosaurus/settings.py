@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "deploydocus",
     "django_extensions",
+    "django_celery_results",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -154,3 +155,7 @@ LOGIN_REDIRECT_URL = "/"
 
 # gitlab
 GITLAB_PRIVATE_TOKEN = getenv("GITLAB_PRIVATE_TOKEN")
+
+CELERY_RESULT_BACKEND = "django-db"
+
+CELERY_CACHE_BACKEND = "django-cache"
