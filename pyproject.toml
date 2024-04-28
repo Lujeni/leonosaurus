@@ -1,10 +1,8 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "leonosaurus"
 version = "0.0.1"
+authors = ["THEBAULT Julien <julien@thebault.co>"]
+readme = "README.md"
 dependencies = [
   "Django==5.0.3",
   "django-allauth==0.61.1",
@@ -12,21 +10,35 @@ dependencies = [
   "python-gitlab==4.4.0",
 ]
 
-[project.optional-dependencies]
-dev = [
-  "black==24.1.1",
-  "celery[redis]==5.4.0",
-  "django-celery-results==2.5.1",
-  "django-stubs==4.2.7",
-  "factory-boy==3.3.0",
-  "pre-commit==3.6.1",
-  "pytest-cov==4.1.0",
-  "pytest-django==4.8.0",
-  "pytest-random-order",
-  "pytest-random-order==1.1.1",
-  "pytest==8.0.0",
-  "ruff==0.2.1",
-]
-doc = [
-  "mkdocs-material==9.5.12"
-]
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.4"
+django-allauth = "^0.62.1"
+python-gitlab = "^4.4.0"
+psycopg2-binary = "^2.9.9"
+celery = {extras = ["redis"], version = "^5.4.0"}
+django-celery-results = "^2.5.1"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.0"
+pytest-cov = "^5.0.0"
+pytest-django = "^4.8.0"
+pytest-random-order = "^1.1.1"
+factory-boy = "^3.3.0"
+ruff = "^0.4.2"
+pre-commit = "^3.7.0"
+django-stubs = "^4.2.7"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "*"
+mkdocs-material = "^9.5.19"
