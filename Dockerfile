@@ -1,17 +1,27 @@
-# Base build
-FROM python:3.11-alpine as base
-RUN apk add --update --virtual .build-deps \
-    build-base \
-    postgresql-dev \
-    python3-dev \
-    libpq
+FROM python:3.11-buster as builder
 
-COPY pyproject.toml pyproject.toml
-RUN pip install -e .
+RUN pip install poetry==1.8.2
 
-# Now multistage build
-FROM python:3.11-alpine
-COPY --from=base /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
-COPY --from=base /usr/local/bin/ /usr/local/bin/
-COPY src /app
-ENV PYTHONUNBUFFERED 1
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
+
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock ./
+RUN touch README.md
+
+RUN poetry install --without test --no-root && rm -rf $POETRY_CACHE_DIR
+
+FROM python:3.11-slim-buster as runtime
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+ENV VIRTUAL_ENV=/app/.venv \
+    PATH="/app/.venv/bin:$PATH"
+
+COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+
+COPY src /app/

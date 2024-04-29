@@ -7,15 +7,29 @@ services:
     volumes:
       - redis:/data
 
+  backend:
+      build: .
+      tty: true
+      command: >
+        bash -c "python /app/manage.py runserver 0.0.0.0:8000"
+      volumes:
+        - ./src:/app/src/
+      ports:
+        - "8000:8000"
+      depends_on:
+        - redis
+
   worker:
-    command: ['celery', 'worker', '-A', 'leonosaurus', '-l', 'info']
+    build: .
+    command: >
+      bash -c "cd /app/src && celery -A leonosaurus worker"
     environment:
       - BROKER_URL=redis://localhost:6379/0
     volumes:
-      - ./src:/src
+      - ./src:/app/src/
     depends_on:
-      - rabbitmq
       - redis
+      - backend
 
 volumes:
   redis:
