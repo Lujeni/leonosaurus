@@ -153,9 +153,10 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGIN_REDIRECT_URL = "/"
 
-# gitlab
 GITLAB_PRIVATE_TOKEN = getenv("GITLAB_PRIVATE_TOKEN")
 
 CELERY_RESULT_BACKEND = "django-db"
 
 CELERY_CACHE_BACKEND = "django-cache"
+
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
