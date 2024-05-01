@@ -1,27 +1,16 @@
-FROM python:3.11-buster as builder
+FROM python:3.11-buster
 
 RUN pip install poetry==1.8.2
 
-ENV POETRY_NO_INTERACTION=1 \
-    POETRY_VIRTUALENVS_IN_PROJECT=1 \
-    POETRY_VIRTUALENVS_CREATE=1 \
-    POETRY_CACHE_DIR=/tmp/poetry_cache
+ENV POETRY_NO_INTERACTION=True \
+    POETRY_VIRTUALENVS_IN_PROJECT=False \
+    POETRY_VIRTUALENVS_CREATE=False \
+    POETRY_CACHE_DIR=/tmp/poetry_cache \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
 RUN touch README.md
-
 RUN poetry install --without test --no-root && rm -rf $POETRY_CACHE_DIR
-
-FROM python:3.11-slim-buster as runtime
-
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
-
-ENV VIRTUAL_ENV=/app/.venv \
-    PATH="/app/.venv/bin:$PATH"
-
-COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
-
-COPY src /app/

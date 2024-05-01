@@ -8,25 +8,23 @@ services:
       - redis:/data
 
   backend:
-      build: .
-      tty: true
-      command: >
-        bash -c "python /app/manage.py migrate \
-        && python /app/manage.py runserver 0.0.0.0:8000"
-      env_file:
-        - .env
-      volumes:
-        - ./src:/app/src/
-      ports:
-        - "8000:8000"
-      depends_on:
-        - redis
+    image: lujeni/leonosaurus:latest
+    restart: always
+    command: >
+      bash -c "cd /app/src && gunicorn leonosaurus.wsgi -b :8000 --reload"
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
 
   worker:
-    build: .
-    tty: true
+    image: lujeni/leonosaurus:latest
     command: >
-      bash -c "cd /app/src && pip install django-extensions && celery -A leonosaurus worker"
+      bash -c "cd /app/src && celery -A leonosaurus worker"
     environment:
       - BROKER_URL=redis://redis:6379/0
     volumes:
