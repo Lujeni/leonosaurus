@@ -116,6 +116,9 @@ class Report(TimeStampedModel):
         verbose_name = _("Report")
         verbose_name_plural = _("Reports")
 
+    def check_compliance(self):
+        raise NotImplementedError
+
 
 class ReportResult(TimeStampedModel):
     STATUS = {

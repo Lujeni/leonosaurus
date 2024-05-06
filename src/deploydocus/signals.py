@@ -7,8 +7,9 @@ from deploydocus.task import task_report
 
 logger = logging.getLogger(__name__)
 
+
 def celery_task_report(sender, created, instance, **kwargs):
-    task_report.delay()
+    task_report.delay(instance.id)
 
 
 signals.post_save.connect(celery_task_report, sender=Report)
