@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def celery_task_report(sender, created, instance, **kwargs):
-    task_report.delay(instance.id)
+    task_report.delay(report_id=instance.id)
 
 
 signals.post_save.connect(celery_task_report, sender=Report)

@@ -11,7 +11,9 @@ services:
     image: lujeni/leonosaurus:latest
     restart: always
     command: >
-      bash -c "python /app/src/manage.py runserver 0.0.0.0:8000"
+      bash -c "python /app/src/manage.py migrate \
+      && python /app/src/manage.py loaddata initial_test_user \
+      && python /app/src/manage.py runserver 0.0.0.0:8000"
     env_file:
       - .env
     volumes:

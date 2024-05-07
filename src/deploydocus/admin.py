@@ -1,8 +1,5 @@
 from django.contrib import admin
-from django.db import transaction
-from functools import partial
 
-from deploydocus.task import task_report
 from deploydocus.models import (
     Rule,
     Policy,
@@ -31,9 +28,7 @@ class ScopeAdmin(admin.ModelAdmin):
 
 
 class ReportAdmin(admin.ModelAdmin):
-    def save_model(self, request, obj, form, change):
-        transaction.on_commit(partial(task_report))
-        return super().save_model(request, obj, form, change)
+    pass
 
 
 class ReportResultAdmin(admin.ModelAdmin):

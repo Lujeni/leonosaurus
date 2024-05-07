@@ -117,25 +117,25 @@ class Report(TimeStampedModel):
         verbose_name_plural = _("Reports")
 
     def check_compliance(self):
-        raise NotImplementedError
+        ReportResult.objects.create(report=self)
+        for project in self.scope.gitlab_projects.all():
+            for policy in self.policies.all():
+                for _ in policy.rules.all():
+                    continue
+                for gitlab_rule in policy.gitlab_rules.all():
+                    gitlab_rule.is_compliant(project=project)
 
 
 class ReportResult(TimeStampedModel):
-    STATUS = {
-        "pending": "Pending",
-        "running": "Running",
-        "success": "Success",
-    }
-    status = models.CharField(max_length=300, choices=STATUS)
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
 
     def __str__(self):
-        return smart_str(self.status, self.report)
+        return smart_str(self.report)
 
     def __unicode__(self):
-        return smart_str(self.status, self.report)
+        return smart_str(self.report)
 
     class Meta:
-        ordering = ["status"]
+        ordering = ["report"]
         verbose_name = _("Report result")
         verbose_name_plural = _("Report results")
